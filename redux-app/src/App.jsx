@@ -27,7 +27,7 @@ function App() {
 	const addTask = () => {
 		setId(id + 1);
 
-		const text = prompt("Input your task...");
+		const text = prompt("Input your task...") || 'SAMPLE TEXT';
 
 		const dateNow = new Date();
 
