@@ -4,6 +4,58 @@
 	box-sizing: border-box;
 }
 
-ul, ol {
+ul,
+ol {
 	list-style: none;
+}
+
+html,
+body {
+	height: 100dvh;
+}
+
+/* animated background */
+html,
+body {
+	overscroll-behavior-x: none;
+	overscroll-behavior-y: none;
+	scroll-behavior: smooth;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+@property --hue1 {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+@property --hue2 {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
+body {
+	background-image: linear-gradient(
+		in oklch longer hue to right,
+		oklch(0.93 0.08 var(--hue1) / 50%),
+		oklch(0.93 0.08 var(--hue2) / 50%)
+	);
+
+	background-size: 100% 100%;
+
+	animation-name: anim_bg;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes anim_bg {
+	0% {
+		--hue1: 0deg;
+		--hue2: 300deg;
+	}
+
+	100% {
+		--hue1: 360deg;
+		--hue2: 660deg;
+	}
 }
