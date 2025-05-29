@@ -217,7 +217,12 @@ const TaskItem = ({
 						color="primary"
 						variant="contained"
 						onClick={() => {
-							if (!timeCompletion || timeCompletion?.toDate() < timeCompletionValue || timeCompletionValue == null) {
+							if (
+								!timeCompletion ||
+								timeCompletion?.toDate() <
+									timeCompletionValue ||
+								timeCompletionValue == null
+							) {
 								edit(
 									id,
 									titleValue,
@@ -225,7 +230,7 @@ const TaskItem = ({
 									timeCompletionValue
 								);
 								handleClose();
-							} 
+							}
 						}}
 					>
 						send

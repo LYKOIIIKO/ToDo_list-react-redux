@@ -65,11 +65,13 @@ const Header = () => {
 	}, [data]);
 
 	const deleteTask = async (id) => {
-		const docRef = doc(db, "tasks", id);
-		try {
-			await deleteDoc(docRef);
-		} catch (error) {
-			console.error("Error:", error);
+		if (id != "NODELETE") {
+			const docRef = doc(db, "tasks", id);
+			try {
+				await deleteDoc(docRef);
+			} catch (error) {
+				console.error("Error:", error);
+			}
 		}
 	};
 
@@ -103,7 +105,7 @@ const Header = () => {
 					alignItems={"center"}
 					spacing={1}
 				>
-					<Grid size={{ xs: '12', md: "auto" }}>
+					<Grid size={{ xs: "12", md: "auto" }}>
 						<Filter />
 					</Grid>
 					<Grid container spacing={3}>
@@ -111,7 +113,10 @@ const Header = () => {
 							<AddButton send={sendTask} />
 						</Grid>
 						<Grid>
-							<IconButton onClick={deleteAllTasks} title="Delete all tasks">
+							<IconButton
+								onClick={deleteAllTasks}
+								title="Delete all tasks"
+							>
 								<DeleteForeverRoundedIcon
 									color="error"
 									fontSize="large"

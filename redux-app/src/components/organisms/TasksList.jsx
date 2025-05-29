@@ -1,4 +1,4 @@
-import { Box, Chip, List } from "@mui/material";
+import { Box, Chip, List, Typography } from "@mui/material";
 import TaskItem from "../molecules/TaskItem";
 import {
 	collection,
@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useSelector } from "react-redux";
 import { db } from "../../fb/initial";
+import styles from './TasksList.module.css'
 
 const TasksList = (props) => {
 	/** @type {import("../../store/reducers/userSlice/userSlice").UserReducer} */
@@ -91,7 +92,10 @@ const TasksList = (props) => {
 
 	return (
 		<>
-			{props.status == "all" && (
+			{tasks.length == 1 && (
+				<Typography className={styles.textGradientAnim} variant="h4" justifyContent={'center'}>Add new task!</Typography>
+			) }
+			{tasks.length > 1 && props.status == "all" && (
 				<Box>
 					<Box>
 						<Chip
@@ -187,7 +191,7 @@ const TasksList = (props) => {
 					</Box>
 				</Box>
 			)}
-			{props.status == "created" && (
+			{tasks.length > 1 && props.status == "created" && (
 				<Box>
 					<Chip
 						label="created"
@@ -219,7 +223,7 @@ const TasksList = (props) => {
 					</List>
 				</Box>
 			)}
-			{props.status == "active" && (
+			{tasks.length > 1 && props.status == "active" && (
 				<Box>
 					<Chip
 						label="active"
@@ -252,7 +256,7 @@ const TasksList = (props) => {
 					</List>
 				</Box>
 			)}
-			{props.status == "done" && (
+			{tasks.length > 1 && props.status == "done" && (
 				<Box>
 					<Chip
 						label="done"
