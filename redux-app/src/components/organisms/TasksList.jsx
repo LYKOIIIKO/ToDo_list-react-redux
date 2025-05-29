@@ -39,7 +39,7 @@ const TasksList = (props) => {
 			};
 			newTasks.push(task);
 		});
-		setTasks(newTasks);
+		setTasks(newTasks);		
 	}, [data]);
 
 	const deleteTask = async (id) => {
